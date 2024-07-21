@@ -21,7 +21,13 @@ function basePath($path = '')
  */
 function loadView($name)
 {
-    require basePath("views/{$name}.view.php");
+    $viewPath = basePath("views/{$name}.view.php");
+    //if ktchecki $name dyl path li 3titiha wach kyna endk f dossier view ola la
+    if (file_exists($viewPath)) {
+        require $viewPath;
+    } else {
+        echo "View '{$name} not found";
+    }
 }
 
 /**
@@ -33,5 +39,15 @@ function loadView($name)
  */
 function loadPartials($name)
 {
-    require basePath("views/partials/{$name}.php");
+    $partialPath = basePath("views/partials/{$name}.php");
+
+    if (file_exists($partialPath)) {
+        require $partialPath;
+    } else {
+        echo "Partial '{$name} not found";
+    }
 }
+
+/**
+ * 
+ */
