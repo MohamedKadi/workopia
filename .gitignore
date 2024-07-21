@@ -1,6 +1,6 @@
-/vendor
+/vendor     //php composer for autoloader 
 /node_modules
-/coonfig/db.php
+/config/db.php
 .env
 .vscode
 .DS_Store
