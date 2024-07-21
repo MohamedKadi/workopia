@@ -49,5 +49,27 @@ function loadPartials($name)
 }
 
 /**
+ * inspect a value(s)
  * 
+ * @param  mixed $variable
+ * @return void
  */
+function inspect($variable)
+{
+    echo '<pre>';
+    var_dump($variable);
+    echo '<pre>';
+}
+
+/**
+ * inspect a value(s)
+ * 
+ * @param  mixed $variable
+ * @return void
+ */
+function inspectAndDie($value)
+{
+    echo '<pre>';
+    die(var_dump($value));
+    echo '<pre>';
+}
