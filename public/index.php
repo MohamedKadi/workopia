@@ -12,7 +12,7 @@ $router = new Router();
 $routes = require basePath('routes.php');
 
 //Get current uri & http method
-$uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); //parse kt3wna lakan url localhost/listing?id=22 ktkhdm 3kss qbl ila kan nfs url mki3rfoch router ki3rf 7ed /listing
 $method = $_SERVER['REQUEST_METHOD'];
 
 //route the request

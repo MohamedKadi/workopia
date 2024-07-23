@@ -16,14 +16,16 @@ function basePath($path = '')
  * Load a view
  * 
  * @param string $name
+ * @param array $data
  * 
  * @return void
  */
-function loadView($name)
+function loadView($name, $data = [])
 {
     $viewPath = basePath("views/{$name}.view.php");
     //if ktchecki $name dyl path li 3titiha wach kyna endk f dossier view ola la
     if (file_exists($viewPath)) {
+        extract($data); //kikhli array associative i creayi variables meaha data
         require $viewPath;
     } else {
         echo "View '{$name} not found";
@@ -72,4 +74,15 @@ function inspectAndDie($value)
     echo '<pre>';
     die(var_dump($value));
     echo '<pre>';
+}
+
+/**
+ * Format salary
+ * 
+ * @param string $salary
+ * @return string $formatted Salary
+ */
+function formatSalary($salary)
+{
+    return '$' . number_format(floatval($salary));
 }
