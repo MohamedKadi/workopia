@@ -22,7 +22,7 @@ function basePath($path = '')
  */
 function loadView($name, $data = [])
 {
-    $viewPath = basePath("views/{$name}.view.php");
+    $viewPath = basePath("App/views/{$name}.view.php");
     //if ktchecki $name dyl path li 3titiha wach kyna endk f dossier view ola la
     if (file_exists($viewPath)) {
         extract($data); //kikhli array associative i creayi variables meaha data
@@ -41,7 +41,7 @@ function loadView($name, $data = [])
  */
 function loadPartials($name)
 {
-    $partialPath = basePath("views/partials/{$name}.php");
+    $partialPath = basePath("App/views/partials/{$name}.php");
 
     if (file_exists($partialPath)) {
         require $partialPath;
