@@ -1,0 +1,16 @@
+{
+    "name": "mohamedkadi/workopia",
+    "description": "Job listing application",
+    "authors": [
+        {
+        "name": "Mohamed Kadi",
+        "email": "support@mohamedkadi.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
