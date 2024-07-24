@@ -6,12 +6,16 @@ class Router
 {
     protected $routes = [];  //array kikon fih routes likt3tih
 
-    public function registerRoute($method, $uri, $controller)
+    public function registerRoute($method, $uri, $action)
     {
+        list($controller, $controllerMethod) = explode('@', $action); // it splits $action kola mra kilqa @ oki7tha f array
+        inspectAndDie($controllerMethod);
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
-            'controller' => $controller
+            'controller' => $action,
+            'controller' => $controller,
+            'controller' => $controllerMethod
         ];
     }
 
@@ -86,7 +90,13 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === $method) {
-                require basePath('App/' . $route['controller']);
+                // Extract controller and controller method
+                $controller = 'App\\Controllers\\' . $route['controller'];
+                $controllerMethod = $route['controllerMethod'];
+
+                //Instatiate the controller and calll the method
+                $controllerInstance = new $controller();
+                $controllerInstance->$controllerMethod();
                 return;
             }
         }
