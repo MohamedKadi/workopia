@@ -9,13 +9,12 @@ class Router
     public function registerRoute($method, $uri, $action)
     {
         list($controller, $controllerMethod) = explode('@', $action); // it splits $action kola mra kilqa @ oki7tha f array
-        inspectAndDie($controllerMethod);
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
-            'controller' => $action,
             'controller' => $controller,
-            'controller' => $controllerMethod
+            'controllerMethod' => $controllerMethod,
+
         ];
     }
 

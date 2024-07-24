@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 
-class HomeController
+class ListingController
 {
     protected $db;
     public function __construct()
@@ -23,5 +23,23 @@ class HomeController
                 'listings' => $listings,
             ]
         );
+    }
+
+    public function create()
+    {
+        loadView('listings/create');
+    }
+    public function show()
+    {
+        $id = $_GET['id'] ?? '';
+
+        $params = [
+            'id' => $id
+        ];
+        $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+        loadView('/listings/show', [
+            'listing' => $listing
+        ]);
     }
 }
