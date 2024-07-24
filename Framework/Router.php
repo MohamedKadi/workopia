@@ -2,6 +2,8 @@
 
 namespace Framework;
 
+use App\Controllers\ErrorController;
+
 class Router
 {
     protected $routes = [];  //array kikon fih routes likt3tih
@@ -70,12 +72,12 @@ class Router
      * 
      * @return void
      */
-    public function error($httpCode = 404)
+    /*public function error($httpCode = 404)
     {
         http_response_code($httpCode);
         loadView("error/{$httpCode}");
         exit;
-    }
+    }*/
 
     /**
      * had function kikon endna array fih ga3 routes li ghymchi fihom kiqlb farray o kiqarnhom mea dkchi li $uri o $method etah f parametre tilqa route libaghi
@@ -99,7 +101,9 @@ class Router
                 return;
             }
         }
-        $this->error(404);
+        /*$this->error(404);*/
+
+        ErrorController::notFound();
     }
 }
 
