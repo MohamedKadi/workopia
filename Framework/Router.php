@@ -99,9 +99,9 @@ class Router
         }
 
         foreach ($this->routes as $route) {
-            //split the current URI into segments
+            //split the current URI into segments array
             $uriSegments = explode('/', trim($uri, '/'));
-            //split the route URI into segments
+            //split the route URI into segments array
             $routeSegments = explode('/', trim($route['uri'], '/'));
             $match = true;
 
@@ -120,6 +120,7 @@ class Router
 
                     //check for the param and add to $params array
                     if (preg_match('/\{(.+?)\}/', $routeSegments[$i], $matches)) {
+                        inspect($matches);
                         $params[$matches[1]] = $uriSegments[$i];
                     }
                 }
