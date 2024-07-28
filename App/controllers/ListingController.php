@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Framework\Database;
+use Framework\Validation;
 
 class ListingController
 {
@@ -50,5 +51,31 @@ class ListingController
                 'listing' => $listing
             ]
         );
+    }
+
+    public function store()
+    {
+        $allowedFields = ['title', 'description', 'salary', 'requirements', 'benefits', 'company', 'address', 'city', 'state', 'phone', 'email'];
+
+        $newListData = array_intersect_key($_POST, array_flip($allowedFields));
+        $newListData = array_map('sanitize', $newListData);
+        $requireFileds = ['title', 'description', 'city', 'state'];
+
+        $errors = [];
+        foreach ($requireFileds as $field) {
+            if (empty($newListData[$field]) || !Validation::string($newListData[$field])) {
+                $errors[$field] = ucfirst($field) . ' is required';
+            }
+        }
+        if (!empty($errors)) {
+            //Reload view with errors
+            loadView(
+                'listings/create',
+                [
+                    'errors' => $errors,
+                    'listing' => $newListData
+                ]
+            );
+        }
     }
 }
