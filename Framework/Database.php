@@ -48,8 +48,8 @@ class Database
             foreach ($params as $param => $value) {
                 $sth->bindValue(':' . $param, $value);
             }
-
             $sth->execute();
+
             return $sth;
         } catch (\PDOException $e) {
             throw new \Exception("Query failed to execute: {$e->getMessage()}");
